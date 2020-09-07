@@ -50,6 +50,9 @@ ifeq ($(CONFIG_PACKAGE_NFT_WITH_JSON),y)
 CONFIGURE_ARGS += --with-json
 endif
 
+TARGET_CFLAGS += -flto
+TARGET_LDFLAGS += -flto
+
 define Package/nftables/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/nft $(1)/usr/sbin/
