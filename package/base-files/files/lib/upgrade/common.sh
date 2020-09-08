@@ -102,24 +102,6 @@ get_magic_long() {
 	(get_image "$@" | dd bs=4 count=1 | hexdump -v -n 4 -e '1/1 "%02x"') 2>/dev/null
 }
 
-get_magic_gpt() {
-	(get_image "$@" | dd bs=8 count=1 skip=64) 2>/dev/null
-}
-
-get_magic_vfat() {
-	(get_image "$@" | dd bs=1 count=3 skip=54) 2>/dev/null
-}
-
-part_magic_efi() {
-	local magic=$(get_magic_gpt "$@")
-	[ "$magic" = "EFI PART" ]
-}
-
-part_magic_fat() {
-	local magic=$(get_magic_vfat "$@")
-	[ "$magic" = "FAT" ]
-}
-
 export_bootdevice() {
 	local cmdline bootdisk rootpart uuid blockdev uevent line class
 	local MAJOR MINOR DEVNAME DEVTYPE
@@ -236,7 +218,8 @@ get_partitions() { # <device> <filename>
 		rm -f "/tmp/partmap.$filename"
 
 		local part
-		part_magic_efi "$disk" && {
+		local magic=$(dd if="$disk" bs=8 count=1 skip=64 2>/dev/null)
+		if [ "$magic" = "EFI PART" ]; then
 			#export_partdevice will fail when partition number is greater than 15, as
 			#the partition major device number is not equal to the disk major device number
 			for part in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; do
@@ -251,7 +234,7 @@ get_partitions() { # <device> <filename>
 
 				printf "%2d %5d %7d\n" $part $lba $num >> "/tmp/partmap.$filename"
 			done
-		} || {
+		else
 			for part in 1 2 3 4; do
 				set -- $(hexdump -v -n 12 -s "$((0x1B2 + $part * 16))" -e '3/4 "0x%08X "' "$disk")
 
@@ -263,7 +246,7 @@ get_partitions() { # <device> <filename>
 
 				printf "%2d %5d %7d\n" $part $lba $num >> "/tmp/partmap.$filename"
 			done
-		}
+		fi
 	fi
 }
 

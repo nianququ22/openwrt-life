@@ -19,7 +19,7 @@ head=16
 sect=63
 
 # create partition table
-set $(ptgen -o "$OUTPUT" -h $head -s $sect ${GUID:+-g} -p "${KERNELSIZE}m" -p "${ROOTFSSIZE}m" ${ALIGN:+-l $ALIGN} ${SIGNATURE:+-S 0x$SIGNATURE} ${GUID:+-G $GUID})
+set $(ptgen -o "$OUTPUT" -h $head -s $sect ${EFI_SIGNATURE:+-g} -p "${KERNELSIZE}m" -p "${ROOTFSSIZE}m" ${ALIGN:+-l $ALIGN} ${SIGNATURE:+-S 0x$SIGNATURE} ${EFI_SIGNATURE:+-G $EFI_SIGNATURE})
 
 KERNELOFFSET="$(($1 / 512))"
 KERNELSIZE="$2"
@@ -29,7 +29,7 @@ ROOTFSSIZE="$(($4 / 512))"
 [ -n "$PADDING" ] && dd if=/dev/zero of="$OUTPUT" bs=512 seek="$ROOTFSOFFSET" conv=notrunc count="$ROOTFSSIZE"
 dd if="$ROOTFSIMAGE" of="$OUTPUT" bs=512 seek="$ROOTFSOFFSET" conv=notrunc
 
-if [ -n "$GUID" ]; then
+if [ -n "$EFI_SIGNATURE" ]; then
     [ -n "$PADDING" ] && dd if=/dev/zero of="$OUTPUT" bs=512 seek="$((ROOTFSOFFSET + ROOTFSSIZE))" conv=notrunc count="$sect"
     mkfs.fat -n kernel -C "$OUTPUT.kernel" -S 512 "$((KERNELSIZE / 1024))"
     mcopy -s -i "$OUTPUT.kernel" "$KERNELDIR"/* ::/
