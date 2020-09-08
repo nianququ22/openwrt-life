@@ -314,6 +314,14 @@ define Device/xiaomi_redmi-router-ac2100
 endef
 TARGET_DEVICES += xiaomi_redmi-router-ac2100
 
+define Device/xiaoyu_xy-c5
+  DTS := XIAOYU-C5
+  IMAGE_SIZE := 32448k
+  DEVICE_TITLE := XiaoYu XY-C5
+  DEVICE_PACKAGES := kmod-ata-core kmod-ata-ahci kmod-usb3
+endef
+TARGET_DEVICES += xiaoyu_xy-c5
+
 define Device/mt7621
   DTS := MT7621
   BLOCKSIZE := 64k
