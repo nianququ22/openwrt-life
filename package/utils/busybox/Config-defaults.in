@@ -1024,7 +1024,7 @@ config BUSYBOX_DEFAULT_CMP
 	default y
 config BUSYBOX_DEFAULT_DIFF
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_FEATURE_DIFF_LONG_OPTIONS
 	bool
 	default n
