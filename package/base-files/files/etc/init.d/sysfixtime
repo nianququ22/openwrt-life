@@ -6,16 +6,14 @@ STOP=90
 
 RTC_DEV=/dev/rtc0
 HWCLOCK=/sbin/hwclock
-TIME_FILE=/etc/soft.clock
 
 boot() {
 	hwclock_load
-	local soft_time="$(find_soft_time)"
-	local hard_time="$(date +%s)"
-	if [ $hard_time -lt $soft_time ]; then
-		date -s @$soft_time
+	local maxtime="$(find_max_time)"
+	local curtime="$(date +%s)"
+	if [ $curtime -lt $maxtime ]; then
+		date -s @$maxtime
 		hwclock_save
-		save_soft_time
 	fi
 }
 
@@ -25,7 +23,6 @@ start() {
 
 stop() {
 	hwclock_save
-	save_soft_time
 }
 
 hwclock_load() {
@@ -37,19 +34,11 @@ hwclock_save(){
 		logger -t sysfixtime "saved '$(date)' to $RTC_DEV"
 }
 
-save_soft_time(){
-	touch $TIME_FILE
-}
+find_max_time() {
+	local file newest
 
-find_soft_time() {
-	local newest
-	if [ -e "$TIME_FILE" ]; then
-		newest=$TIME_FILE
-	else
-		local file
-		for file in $( find /etc -type f ) ; do
-			[ -z "$newest" -o "$newest" -ot "$file" ] && newest=$file
-		done
-	fi
-	date -r "$newest" +%s
+	for file in $( find /etc -type f ) ; do
+		[ -z "$newest" -o "$newest" -ot "$file" ] && newest=$file
+	done
+	[ "$newest" ] && date -r "$newest" +%s
 }
