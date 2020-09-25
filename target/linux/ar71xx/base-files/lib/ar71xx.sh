@@ -942,6 +942,12 @@ ar71xx_board_detect() {
 	*"GL-AR750S")
 		name="gl-ar750s"
 		;;
+	*"GL-X750")
+		name="gl-x750"
+		;;
+	*"GL-X1200")
+		name="gl-x1200"
+		;;
 	*"GL-CONNECT INET v1")
 		name="gl-inet"
 
@@ -952,6 +958,9 @@ ar71xx_board_detect() {
 		;;
 	*"GL-MIFI")
 		name="gl-mifi"
+		;;
+	*"GL-E750")
+		name="gl-e750"
 		;;
 	*"GL-USB150")
 		name="gl-usb150"

@@ -143,6 +143,28 @@ define LegacyDevice/GL-AR750S
 endef
 LEGACY_DEVICES += GL-AR750S
 
+define LegacyDevice/GL-E750
+	CONSOLE := null,115200
+	DEVICE_TITLE := GL-E750 with nand flash
+	DEVICE_PACKAGES :=  kmod-ath10k-ct ath10k-firmware-qca9887-ct kmod-usb-core \
+	      kmod-usb2 kmod-usb-storage
+endef
+LEGACY_DEVICES += GL-E750
+
+define LegacyDevice/GL-X1200
+	DEVICE_TITLE := GL-X1200 with nand flash
+	DEVICE_PACKAGES :=  kmod-ath10k-ct ath10k-firmware-qca9888-ct kmod-usb-core \
+	      kmod-usb2 kmod-usb-storage
+endef
+LEGACY_DEVICES += GL-X1200
+
+define LegacyDevice/GL-X750
+	DEVICE_TITLE := GL-X750 with nand flash
+	DEVICE_PACKAGES :=  kmod-ath10k-ct ath10k-firmware-qca9887-ct kmod-usb-core \
+	      kmod-usb2 kmod-usb-storage
+endef
+LEGACY_DEVICES += GL-X750
+
 define LegacyDevice/GL-AR300M
 	DEVICE_TITLE := GL-AR300M with nand flash
 	DEVICE_PACKAGES :=  kmod-usb-core kmod-usb2 kmod-usb-storage

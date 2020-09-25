@@ -22,13 +22,13 @@
 #include "dev-eth.h"
 #include "dev-gpio-buttons.h"
 #include "dev-leds-gpio.h"
-#include "dev-m25p80.h"
 #include "dev-usb.h"
 #include "dev-spi.h"
 #include "dev-wmac.h"
 #include "machtypes.h"
 #include "pci.h"
 
+#define GL_AR300M_GPIO_LED_USB		2
 #define GL_AR300M_GPIO_LED_WLAN		14
 #define GL_AR300M_GPIO_LED_LAN		13
 #define GL_AR300M_GPIO_LED_SYSTEM	12
@@ -40,13 +40,19 @@
 #define GL_AR300M_KEYS_DEBOUNCE_INTERVAL	(3 * GL_AR300M_KEYS_POLL_INTERVAL)
 
 #define GL_AR300M_MAC0_OFFSET	0
-#define GL_AR300M_MAC1_OFFSET	6
+#define GL_AR300M_MAC1_OFFSET	0
 #define GL_AR300M_WMAC_CALDATA_OFFSET	0x1000
 #define GL_AR300M_PCIE_CALDATA_OFFSET	0x5000
 
 static struct gpio_led gl_ar300m_leds_gpio[] __initdata = {
 	{
-		.name = "gl-ar300m:red:wlan",
+		.name = "gl-ar300m:green:usb",
+		.gpio = GL_AR300M_GPIO_LED_USB,
+		.active_low = 0,
+		.default_state = 1,
+	},
+	{
+		.name = "gl-ar300m:green:wlan",
 		.gpio = GL_AR300M_GPIO_LED_WLAN,
 		.active_low = 1,
 	},
@@ -102,7 +108,7 @@ static struct spi_board_info gl_ar300m_spi_info[] = {
 		.bus_num	= 0,
 		.chip_select	= 1,
 		.max_speed_hz	= 25000000,
-		.modalias	= "ath79-spinand",
+		.modalias	= "generic-spinand-controller",
 		.platform_data	= NULL,
 	}
 };

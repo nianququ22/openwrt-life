@@ -164,6 +164,7 @@ ar71xx_setup_interfaces()
 	dr344|\
 	gl-ar150|\
 	gl-ar300m|\
+	gl-x750|\
 	gl-domino|\
 	gl-inet|\
 	gl-mifi|\
@@ -181,6 +182,17 @@ ar71xx_setup_interfaces()
 	wpe72|\
 	wrtnode2q)
 		ucidef_set_interfaces_lan_wan "eth1" "eth0"
+		;;
+	gl-ar750s)
+		ucidef_add_switch "switch0" \
+ 			"0@eth0" "2:lan:2" "3:lan:1" "1:wan"
+		;;
+	gl-x1200)
+		ucidef_add_switch "switch0" \
+			"0@eth0" "1:lan" "2:lan" "3:lan" "4:lan" "5:wan"
+		;;
+	gl-e750)
+		ucidef_set_interface_lan "eth0"
 		;;
 	all0258n|\
 	all0315n|\
@@ -451,10 +463,6 @@ ar71xx_setup_interfaces()
 		ucidef_add_switch "switch0" \
 			"0@eth1" "1:lan" "2:lan"
 		;;
-	gl-ar750s)
-		ucidef_add_switch "switch0" \
- 			"0@eth0" "2:lan:2" "3:lan:1" "1:wan"
-		;;
 	jwap230)
 		ucidef_set_interfaces_lan_wan "eth0.1" "eth1.2"
 		ucidef_add_switch "switch0" \
@@ -645,6 +653,9 @@ ar71xx_setup_macs()
 	wpj344|\
 	wpj558)
 		wan_mac=$(mtd_get_mac_binary u-boot 0x2e018)
+		;;
+	gl-ar300m)
+		lan_mac=$(mtd_get_mac_binary art 0)
 		;;
 	esac
 

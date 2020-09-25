@@ -90,7 +90,6 @@ e750a-v4)
 	esac
 	;;
 ap531b0|\
-gl-usb150|\
 sc1750|\
 sc450)
 	ucidef_set_led_wlan "wlan" "WLAN" "$board:green:wlan" "phy0tpt"
@@ -415,15 +414,26 @@ fritz450e)
 	ucidef_set_led_netdev "lan" "LAN" "$board:green:lan" "eth0"
 	ucidef_set_led_wlan "wlan" "WLAN" "$board:green:wlan" "phy0tpt"
 	;;
+gl-usb150)
+	ucidef_set_led_wlan "wlan" "WLAN" "$board:green:wlan" "phy0tpt"
+	ucidef_set_led_default "power" "POWER" "$board:green:power" "1"
+	;;
 gl-ar300m)
-	ucidef_set_led_wlan "wlan" "WLAN" "$board:red:wlan" "phy0tpt"
+	ucidef_set_led_wlan "wlan" "WLAN" "$board:green:wlan" "phy0tpt"
 	ucidef_set_led_netdev "lan" "LAN" "$board:green:lan" "eth1"
 	;;
+gl-x750)
+	ucidef_set_led_wlan "wlan2g" "WLAN2G" "$board:white:wlan2g" "phy1tpt"
+	ucidef_set_led_wlan "wlan5g" "WLAN5G" "$board:white:wlan5g" "phy0tpt"
+	ucidef_set_led_netdev "wan" "WAN" "$board:white:wan" "eth0"
+	ucidef_set_led_netdev  "3gnet" "3GNET" "$board:white:4g" "3g-wan"
+	;;
+gl-ar750s|\
 gl-ar750)
 	ucidef_set_led_wlan "wlan2g" "WLAN2G" "$board:white:wlan2g" "phy1tpt"
 	ucidef_set_led_wlan "wlan5g" "WLAN5G" "$board:white:wlan5g" "phy0tpt"
 	;;
-gl-ar750s)
+gl-x1200)
 	ucidef_set_led_wlan "wlan2g" "WLAN2G" "$board:green:wlan2g" "phy1tpt"
 	ucidef_set_led_wlan "wlan5g" "WLAN5G" "$board:green:wlan5g" "phy0tpt"
 	;;
@@ -435,8 +445,6 @@ gl-mifi)
 	;;
 gl-ar150)
 	ucidef_set_led_wlan "wlan" "WLAN" "$board:orange:wlan" "phy0tpt"
-	ucidef_set_led_netdev "wan" "WAN" "$board:green:wan" "eth0"
-	ucidef_set_led_netdev "lan" "LAN" "$board:green:lan" "eth1"
 	;;
 gl-ar300)
 	ucidef_set_led_wlan "wlan" "WLAN" "$board:wlan" "phy0tpt"

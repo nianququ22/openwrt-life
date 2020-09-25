@@ -369,6 +369,9 @@ platform_check_image() {
 		return 0
 		;;
 	gl-ar300m|\
+	gl-e750|\
+	gl-x750|\
+	gl-x1200|\
 	gl-ar750s)
 		platform_check_image_gl_nand "$1" "$board" "$magic" && return 0
 		return 1
@@ -805,6 +808,9 @@ platform_pre_upgrade() {
 		[ -z "$(rootfs_type)" ] && mtd erase firmware
 		;;
 	gl-ar300m|\
+	gl-e750|\
+	gl-x750|\
+	gl-x1200|\
 	gl-ar750s)
 		platform_pre_upgrade_gl_nand "$1"
 		;;

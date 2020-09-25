@@ -497,6 +497,20 @@ define Device/gl-ar750
 endef
 TARGET_DEVICES += gl-ar750
 
+define Device/gl-x750
+  DEVICE_TITLE := GL.iNet GL-X750
+  DEVICE_PACKAGES := kmod-ath10k-ct ath10k-firmware-qca9887-ct kmod-usb-core \
+	kmod-usb2 kmod-usb-storage
+  BOARDNAME := GL-X750
+  SUPPORTED_DEVICES := gl-x750
+  IMAGE_SIZE := 16000k
+  CONSOLE := null,115200
+  MTDPARTS := spi0.0:256k(u-boot)ro,64k(u-boot-env),64k(art)ro,-(firmware)
+  IMAGE/sysupgrade.bin := append-kernel | pad-to $$$$(BLOCKSIZE) | \
+	append-rootfs | pad-rootfs | append-metadata | check-size $$$$(IMAGE_SIZE)
+endef
+TARGET_DEVICES += gl-x750
+
 define Device/gl-ar750s
   DEVICE_TITLE := GL.iNet GL-AR750S
   DEVICE_PACKAGES := kmod-ath10k-ct ath10k-firmware-qca9887-ct kmod-usb-core \
@@ -509,6 +523,19 @@ define Device/gl-ar750s
 	append-rootfs | pad-rootfs | append-metadata | check-size $$$$(IMAGE_SIZE)
 endef
 TARGET_DEVICES += gl-ar750s
+
+define Device/gl-x1200
+  DEVICE_TITLE := GL.iNet GL-X1200
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-storage \
+	  kmod-ath10k-ct ath10k-firmware-qca9888-ct 
+  BOARDNAME := GL-X1200
+  SUPPORTED_DEVICES := gl-x1200
+  IMAGE_SIZE := 16000k
+  MTDPARTS := spi0.0:256k(u-boot)ro,64k(u-boot-env),64k(art)ro,-(firmware)
+  IMAGE/sysupgrade.bin := append-kernel | pad-to $$$$(BLOCKSIZE) | \
+	  append-rootfs | pad-rootfs | append-metadata | check-size $$$$(IMAGE_SIZE)
+endef
+TARGET_DEVICES += gl-x1200
 
 define Device/gl-domino
   DEVICE_TITLE := GL.iNet Domino Pi
@@ -529,6 +556,20 @@ define Device/gl-mifi
   MTDPARTS := spi0.0:256k(u-boot)ro,64k(u-boot-env),16000k(firmware),64k(art)ro
 endef
 TARGET_DEVICES += gl-mifi
+
+define Device/gl-e750
+  DEVICE_TITLE := GL.iNet GL-E750
+  DEVICE_PACKAGES := kmod-ath10k-ct ath10k-firmware-qca9887-ct kmod-usb-core \
+	kmod-usb2 kmod-usb-storage
+  BOARDNAME := GL-E750
+  SUPPORTED_DEVICES := gl-e750
+  IMAGE_SIZE := 16000k
+  CONSOLE := null,115200
+  MTDPARTS := spi0.0:256k(u-boot)ro,64k(u-boot-env),64k(art)ro,-(firmware)
+  IMAGE/sysupgrade.bin := append-kernel | pad-to $$$$(BLOCKSIZE) | \
+	append-rootfs | pad-rootfs | append-metadata | check-size $$$$(IMAGE_SIZE)
+endef
+TARGET_DEVICES += gl-e750
 
 define Device/gl-usb150
   DEVICE_TITLE := GL.iNet GL-USB150

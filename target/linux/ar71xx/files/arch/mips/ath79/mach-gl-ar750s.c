@@ -65,6 +65,13 @@ static struct spi_board_info gl_ar750s_spi_info[] = {
         .modalias   = "m25p80",
         .platform_data  = NULL,
     },
+    {
+        .bus_num    = 0,
+        .chip_select    = 1,
+        .max_speed_hz   = 25000000,
+        .modalias   = "generic-spinand-controller",
+        .platform_data  = NULL,
+    }
 };
 
 static struct ath79_spi_platform_data gl_ar750s_spi_data = {
@@ -74,20 +81,20 @@ static struct ath79_spi_platform_data gl_ar750s_spi_data = {
 
 static struct gpio_led gl_ar750s_leds_gpio[] __initdata = {
 	{
-		 .name           = "gl-ar750s:green:power",
+		 .name           = "gl-ar750s:white:power",
 		 .gpio           = GL_AR750S_GPIO_LED_POWER,
 		.default_state  = LEDS_GPIO_DEFSTATE_KEEP,
 		.active_low     = 1,
    	 },{
-		 .name           = "gl-ar750s:green:usbpower",
+		 .name           = "gl-ar750s:white:usbpower",
 		 .gpio           = GL_AR750S_GPIO_USB_POWER,
 		.active_low     = 1,
    	 },{
-		.name		= "gl-ar750s:green:wlan2g",
+		.name		= "gl-ar750s:white:wlan2g",
 		.gpio		= GL_AR750S_GPIO_LED_WLAN2G,
 		.active_low	= 1,
 	},{
-		.name		= "gl-ar750s:green:wlan5g",
+		.name		= "gl-ar750s:white:wlan5g",
 		.gpio		= GL_AR750S_GPIO_LED_WLAN5G,
 		.active_low	= 0,
 	}
@@ -154,7 +161,7 @@ static void __init  gl_ar750s_setup(void)
 {
 	u8 *eeprom = (u8 *) KSEG1ADDR(0x1f050000);
 
-	ath79_register_spi(&gl_ar750s_spi_data, gl_ar750s_spi_info, 1);
+	ath79_register_spi(&gl_ar750s_spi_data, gl_ar750s_spi_info, 2);
 
 	ath79_init_mac(ath79_eth0_data.mac_addr,
 	               eeprom + GL_AR750S_MAC0_OFFSET, 0);
