@@ -258,7 +258,7 @@ config BUSYBOX_DEFAULT_LOCALE_SUPPORT
 	default n
 config BUSYBOX_DEFAULT_UNICODE_SUPPORT
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_UNICODE_USING_LOCALE
 	bool
 	default n
@@ -273,19 +273,19 @@ config BUSYBOX_DEFAULT_LAST_SUPPORTED_WCHAR
 	default 0
 config BUSYBOX_DEFAULT_UNICODE_COMBINING_WCHARS
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_UNICODE_WIDE_WCHARS
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_UNICODE_BIDI_SUPPORT
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_UNICODE_NEUTRAL_TABLE
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_UNICODE_PRESERVE_BROKEN
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_FEATURE_NON_POSIX_CP
 	bool
 	default y
@@ -444,7 +444,7 @@ config BUSYBOX_DEFAULT_FEATURE_TAR_FROM
 	default y
 config BUSYBOX_DEFAULT_FEATURE_TAR_OLDGNU_COMPATIBILITY
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_FEATURE_TAR_OLDSUN_COMPATIBILITY
 	bool
 	default n
@@ -822,7 +822,7 @@ config BUSYBOX_DEFAULT_FEATURE_TEST_64
 	default y
 config BUSYBOX_DEFAULT_TIMEOUT
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_TOUCH
 	bool
 	default y
@@ -1585,10 +1585,10 @@ config BUSYBOX_DEFAULT_IONICE
 	default n
 config BUSYBOX_DEFAULT_IPCRM
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_IPCS
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_LAST
 	bool
 	default n
@@ -2411,13 +2411,13 @@ config BUSYBOX_DEFAULT_NETCAT
 	default n
 config BUSYBOX_DEFAULT_NC_SERVER
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_NC_EXTRA
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_NC_110_COMPAT
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_NETMSG
 	bool
 	default y
@@ -2573,7 +2573,7 @@ config BUSYBOX_DEFAULT_FEATURE_WGET_AUTHENTICATION
 	default n
 config BUSYBOX_DEFAULT_FEATURE_WGET_TIMEOUT
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_FEATURE_WGET_HTTPS
 	bool
 	default n
@@ -2684,7 +2684,7 @@ config BUSYBOX_DEFAULT_FREE
 	default y
 config BUSYBOX_DEFAULT_FUSER
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_IOSTAT
 	bool
 	default n
