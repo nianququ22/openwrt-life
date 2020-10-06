@@ -279,6 +279,7 @@ gl-e750_mtdlayout=mtdparts=spi0.0:256k(u-boot)ro,64k(u-boot-env),64k(art)ro,2048
 gl-x750_mtdlayout=mtdparts=spi0.0:256k(u-boot)ro,64k(u-boot-env),64k(art)ro,2048k(kernel),13052k(reserved);spi0.1:-(ubi)
 gl-x1200_mtdlayout=mtdparts=spi0.0:256k(u-boot)ro,64k(u-boot-env),64k(art)ro,2048k(kernel),13052k(reserved);spi0.1:-(ubi)
 gl-ar300m_mtdlayout=mtdparts=spi0.0:256k(u-boot)ro,64k(u-boot-env),16000k(reserved),64k(art)ro;spi0.1:2048k(kernel),-(ubi)
+gl-x300b_mtdlayout=mtdparts=spi0.0:256k(u-boot)ro,64k(u-boot-env),64k(art)ro,2048k(kernel),13052k(reserved);spi0.1:-(ubi)
 
 define Image/BuildKernel
 	cp $(KDIR)/vmlinux.elf $(VMLINUX).elf
@@ -1058,6 +1059,7 @@ $(eval $(call SingleProfile,GLNAND,64k,GL-E750,gl-e750,GL-E750,ttyS0,115200,$$(g
 $(eval $(call SingleProfile,GLNAND,64k,GL-X750,gl-x750,GL-X750,ttyS0,115200,$$(gl-x750_mtdlayout),gl-x750))
 $(eval $(call SingleProfile,GLNAND,64k,GL-X1200,gl-x1200,GL-X1200,ttyS0,115200,$$(gl-x1200_mtdlayout),gl-x1200))
 $(eval $(call SingleProfile,GLNAND,64k,GL-AR300M,gl-ar300m,GL-AR300M,ttyS0,115200,$$(gl-ar300m_mtdlayout),gl-ar300m))
+$(eval $(call SingleProfile,GLNAND,64k,GL-X300B,gl-x300b,GL-X300B,ttyS0,115200,$$(gl-x300b_mtdlayout),gl-x300b))
 
 endif # ifeq ($(SUBTARGET),nand)
 
