@@ -170,9 +170,3 @@ define LegacyDevice/GL-AR300M
 	DEVICE_PACKAGES :=  kmod-usb-core kmod-usb2 kmod-usb-storage
 endef
 LEGACY_DEVICES += GL-AR300M
-
-define LegacyDevice/GL-X300B
-	DEVICE_TITLE := GL-X300B with nand flash
-	DEVICE_PACKAGES :=  kmod-usb-core  kmod-usb2 kmod-usb-storage
-endef
-LEGACY_DEVICES += GL-X300B

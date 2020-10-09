@@ -369,7 +369,6 @@ platform_check_image() {
 		return 0
 		;;
 	gl-ar300m|\
-	gl-x300b|\
 	gl-e750|\
 	gl-x750|\
 	gl-x1200|\
@@ -809,7 +808,6 @@ platform_pre_upgrade() {
 		[ -z "$(rootfs_type)" ] && mtd erase firmware
 		;;
 	gl-ar300m|\
-	gl-x300b|\
 	gl-e750|\
 	gl-x750|\
 	gl-x1200|\
