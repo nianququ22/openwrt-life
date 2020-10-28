@@ -183,7 +183,7 @@ config BUSYBOX_DEFAULT_FEATURE_USE_BSS_TAIL
 	default n
 config BUSYBOX_DEFAULT_FLOAT_DURATION
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_FEATURE_RTMINMAX
 	bool
 	default n
@@ -868,7 +868,7 @@ config BUSYBOX_DEFAULT_UNLINK
 	default n
 config BUSYBOX_DEFAULT_USLEEP
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_UUDECODE
 	bool
 	default n
