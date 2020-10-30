@@ -1996,7 +1996,7 @@ config BUSYBOX_DEFAULT_FLASHCP
 	default n
 config BUSYBOX_DEFAULT_HDPARM
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_FEATURE_HDPARM_GET_IDENTITY
 	bool
 	default n
