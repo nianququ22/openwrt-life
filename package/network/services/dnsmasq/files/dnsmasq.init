@@ -354,7 +354,7 @@ dhcp_host_add() {
 		clientid="id:${clientid},"
 	fi
 
-	if [ -z "$macs" ] && [ -z "$duids" ]; then
+	if [ -z "$macs" ] && [ -z "$duids" ] && [ -z "$clientid" ]; then
 		# --dhcp-host=lap,192.168.0.199,[::beef]
 		[ -n "$name" ] || return 0
 		macs="$name"
