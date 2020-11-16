@@ -86,7 +86,7 @@
  	{QMI_GOBI_DEVICE(0x05c6, 0x9235)},	/* Top Global Gobi 2000 Modem device (VR306) */
 --- a/drivers/usb/serial/option.c
 +++ b/drivers/usb/serial/option.c
-@@ -561,6 +561,23 @@ static void option_instat_callback(struc
+@@ -562,6 +562,23 @@ static void option_instat_callback(struc
  #define WETELECOM_PRODUCT_6802			0x6802
  #define WETELECOM_PRODUCT_WMD300		0x6803
  
