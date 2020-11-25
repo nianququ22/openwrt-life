@@ -152,27 +152,28 @@ proto_qmi_setup() {
 		esac
 	fi
 
-	json_load "$(uqmi -s -d "$device" --get-plmn)"
-	json_get_var plmn_mode mode
-	json_get_var mcc mcc
-	json_get_var mnc mnc
-	# fix leading zeros
-	mcc=$(printf '%03d' $mcc)
-	mnc=$(printf '%02d' $mnc)
-
-	if [ -z "$plmn" -o "$plmn" = 0 ]; then
-		if [ "$plmn_mode" != "automatic" ]; then
+	if [ -n "$plmn" ]; then
+		json_load "$(uqmi -s -d "$device" --get-plmn)"
+		json_get_var plmn_mode mode
+		json_get_vars mcc mnc || {
 			mcc=0
 			mnc=0
-			echo "Setting PLMN to auto"
+		}
+
+		if [ "$plmn" = "0" ]; then
+			if [ "$plmn_mode" != "automatic" ]; then
+				mcc=0
+				mnc=0
+				echo "Setting PLMN to auto"
+			fi
+		elif [ "$mcc" -ne "${plmn:0:3}" -o "$mnc" -ne "${plmn:3}" ]; then
+			mcc=${plmn:0:3}
+			mnc=${plmn:3}
+			echo "Setting PLMN to $plmn"
+		else
+			mcc=""
+			mnc=""
 		fi
-	elif [ "$mcc" -ne "${plmn:0:3}" -o "$mnc" -ne "${plmn:3}" ]; then
-		mcc=${plmn:0:3}
-		mnc=${plmn:3}
-		echo "Setting PLMN to $plmn"
-	else
-		mcc=""
-		mnc=""
 	fi
 
 	if [ -n "$mcc" -a -n "$mnc" ]; then
