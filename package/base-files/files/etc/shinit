@@ -15,7 +15,7 @@ service() {
 		echo "Usage: service <service> [command]"
 		if [ -n "$1" ]; then
 			echo "Service "'"'"$1"'"'" not found, the following services are available:"
-		else 
+		else
 			echo "The following services are available:"
 		fi
 		for F in /etc/init.d/* ; do
