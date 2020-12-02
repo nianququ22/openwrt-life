@@ -241,17 +241,18 @@ generate_static_system() {
 	uci -q batch <<-EOF
 		delete system.@system[0]
 		add system system
-		set system.@system[-1].hostname='OpenWrt'
+		set system.@system[-1].hostname='OpenWrt-Life'
 		set system.@system[-1].timezone='CST-8'
 		set system.@system[-1].zonename='Asia/Shanghai'
 		set system.@system[-1].ttylogin='0'
 		set system.@system[-1].log_size='64'
 		set system.@system[-1].urandom_seed='0'
+		set system.@system[-1].log_proto='udp'
+		set system.@system[-1].conloglevel='8'
+		set system.@system[-1].cronloglevel='5'
 
 		delete system.ntp
 		set system.ntp='timeserver'
-		set system.ntp.enabled='1'
-		set system.ntp.enable_server='0'
 		add_list system.ntp.server='ntp.ntsc.ac.cn'
 		add_list system.ntp.server='cn.ntp.org.cn'
 		add_list system.ntp.server='ntp.aliyun.com'
