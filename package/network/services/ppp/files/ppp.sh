@@ -188,15 +188,6 @@ ppp_generic_teardown() {
 	/lib/netifd/ppp-post-down "$interface"
 }
 
-ppp_load_module() {
-	local load
-	for module in "$@"; do
-		grep -qs "^$module " /proc/modules || /sbin/insmod $module 2>&- >&-
-		load=1
-	done
-	[ "$load" = "1" ] && sleep 1
-}
-
 # PPP on serial device
 
 proto_ppp_init_config() {
@@ -233,7 +224,7 @@ proto_pppoe_setup() {
 	local config="$1"
 	local iface="$2"
 
-	ppp_load_module slhc ppp_generic pppox pppoe
+	insmod_ignore slhc ppp_generic pppox pppoe 2>&- >&-
 
 	json_get_var mtu mtu
 	mtu="${mtu:-1492}"
@@ -273,7 +264,7 @@ proto_pppoa_setup() {
 	local config="$1"
 	local iface="$2"
 
-	ppp_load_module slhc ppp_generic pppox pppoatm
+	insmod_ignore slhc ppp_generic pppox pppoatm 2>&- >&-
 
 	json_get_vars atmdev vci vpi encaps
 
@@ -320,7 +311,7 @@ proto_pptp_setup() {
 		exit 1
 	}
 
-	ppp_load_module slhc ppp_generic ppp_async ppp_mppe ip_gre gre pptp
+	insmod_ignore slhc ppp_generic ppp_async ppp_mppe ip_gre gre pptp 2>&- >&-
 
 	ppp_generic_setup "$config" \
 		plugin pptp.so \
